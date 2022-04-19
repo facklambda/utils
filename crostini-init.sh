@@ -30,7 +30,7 @@ rustup completions bash > ~/.local/share/bash-completion/completions/rustup
 echo "Installing Go"
 curl --proto '=https' --tlsv1.2 -sSfLO https://go.dev/dl/go1.18.1.linux-arm64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.1.linux-arm64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.profile
 source $HOME/.profile
 go version
 
