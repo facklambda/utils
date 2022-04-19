@@ -3,7 +3,7 @@ echo "updating and upgrading base system"
 sudo apt-get update
 sudo apt-get upgrade -y
 echo "installing build-essential and other deps"
-sudo apt-get install apt-transport-https build-essential pkg-config libssl-dev -y
+sudo apt-get install apt-transport-https build-essential pkg-config libssl-dev micro -y
 
 
 echo "Installing GitHub CLI"
@@ -26,3 +26,22 @@ echo "Installing Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain stable -y
 source $HOME/.cargo/env
 rustup completions bash > ~/.local/share/bash-completion/completions/rustup
+
+echo "Installing Go"
+curl --proto '=https' --tlsv1.2 -sSfLO https://go.dev/dl/go1.18.1.linux-arm64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.1.linux-arm64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+source $HOME/.profile
+go version
+
+echo "Installing Micro LSP"
+micro -plugin install lsp
+micro -plugin install go
+#git clone https://github.com/AndCake/micro-plugin-lsp ~/.config/micro/plug/lsp
+
+echo "Installing dotfiles"
+cd ~
+git init
+git remote add origin https://github.com/facklambda/dots.git
+git fetch
+git checkout -f main
