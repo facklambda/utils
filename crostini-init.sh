@@ -3,7 +3,7 @@ echo "updating and upgrading base system"
 sudo apt-get update
 sudo apt-get upgrade -y
 echo "installing build-essential and other deps"
-sudo apt-get install apt-transport-https build-essential pkg-config libssl-dev micro -y
+sudo apt-get install apt-transport-https cmake python build-essential pkg-config libssl-dev micro -y
 
 
 echo "Installing GitHub CLI"
